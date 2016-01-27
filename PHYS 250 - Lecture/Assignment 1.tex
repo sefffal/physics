@@ -1,0 +1,533 @@
+
+% Default to the notebook output style
+
+    
+
+
+% Inherit from the specified cell style.
+
+
+
+
+    
+\documentclass{article}
+
+    
+    
+    \usepackage{graphicx} % Used to insert images
+    \usepackage{adjustbox} % Used to constrain images to a maximum size 
+    \usepackage{color} % Allow colors to be defined
+    \usepackage{enumerate} % Needed for markdown enumerations to work
+    \usepackage{geometry} % Used to adjust the document margins
+    \usepackage{amsmath} % Equations
+    \usepackage{amssymb} % Equations
+    \usepackage{eurosym} % defines \euro
+    \usepackage[mathletters]{ucs} % Extended unicode (utf-8) support
+    \usepackage[utf8x]{inputenc} % Allow utf-8 characters in the tex document
+    \usepackage{fancyvrb} % verbatim replacement that allows latex
+    \usepackage{grffile} % extends the file name processing of package graphics 
+                         % to support a larger range 
+    % The hyperref package gives us a pdf with properly built
+    % internal navigation ('pdf bookmarks' for the table of contents,
+    % internal cross-reference links, web links for URLs, etc.)
+    \usepackage{hyperref}
+    \usepackage{longtable} % longtable support required by pandoc >1.10
+    \usepackage{booktabs}  % table support for pandoc > 1.12.2
+    \usepackage{ulem} % ulem is needed to support strikethroughs (\sout)
+    
+
+    
+    
+    \definecolor{orange}{cmyk}{0,0.4,0.8,0.2}
+    \definecolor{darkorange}{rgb}{.71,0.21,0.01}
+    \definecolor{darkgreen}{rgb}{.12,.54,.11}
+    \definecolor{myteal}{rgb}{.26, .44, .56}
+    \definecolor{gray}{gray}{0.45}
+    \definecolor{lightgray}{gray}{.95}
+    \definecolor{mediumgray}{gray}{.8}
+    \definecolor{inputbackground}{rgb}{.95, .95, .85}
+    \definecolor{outputbackground}{rgb}{.95, .95, .95}
+    \definecolor{traceback}{rgb}{1, .95, .95}
+    % ansi colors
+    \definecolor{red}{rgb}{.6,0,0}
+    \definecolor{green}{rgb}{0,.65,0}
+    \definecolor{brown}{rgb}{0.6,0.6,0}
+    \definecolor{blue}{rgb}{0,.145,.698}
+    \definecolor{purple}{rgb}{.698,.145,.698}
+    \definecolor{cyan}{rgb}{0,.698,.698}
+    \definecolor{lightgray}{gray}{0.5}
+    
+    % bright ansi colors
+    \definecolor{darkgray}{gray}{0.25}
+    \definecolor{lightred}{rgb}{1.0,0.39,0.28}
+    \definecolor{lightgreen}{rgb}{0.48,0.99,0.0}
+    \definecolor{lightblue}{rgb}{0.53,0.81,0.92}
+    \definecolor{lightpurple}{rgb}{0.87,0.63,0.87}
+    \definecolor{lightcyan}{rgb}{0.5,1.0,0.83}
+    
+    % commands and environments needed by pandoc snippets
+    % extracted from the output of `pandoc -s`
+    \providecommand{\tightlist}{%
+      \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+    % Add ',fontsize=\small' for more characters per line
+    \newenvironment{Shaded}{}{}
+    \newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.56,0.13,0.00}{{#1}}}
+    \newcommand{\DecValTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\FloatTok}[1]{\textcolor[rgb]{0.25,0.63,0.44}{{#1}}}
+    \newcommand{\CharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\StringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\CommentTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textit{{#1}}}}
+    \newcommand{\OtherTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{{#1}}}
+    \newcommand{\AlertTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.02,0.16,0.49}{{#1}}}
+    \newcommand{\RegionMarkerTok}[1]{{#1}}
+    \newcommand{\ErrorTok}[1]{\textcolor[rgb]{1.00,0.00,0.00}{\textbf{{#1}}}}
+    \newcommand{\NormalTok}[1]{{#1}}
+    
+    % Additional commands for more recent versions of Pandoc
+    \newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.53,0.00,0.00}{{#1}}}
+    \newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.25,0.44,0.63}{{#1}}}
+    \newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.73,0.40,0.53}{{#1}}}
+    \newcommand{\ImportTok}[1]{{#1}}
+    \newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.73,0.13,0.13}{\textit{{#1}}}}
+    \newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\VariableTok}[1]{\textcolor[rgb]{0.10,0.09,0.49}{{#1}}}
+    \newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.00,0.44,0.13}{\textbf{{#1}}}}
+    \newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.40,0.40,0.40}{{#1}}}
+    \newcommand{\BuiltInTok}[1]{{#1}}
+    \newcommand{\ExtensionTok}[1]{{#1}}
+    \newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.74,0.48,0.00}{{#1}}}
+    \newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.49,0.56,0.16}{{#1}}}
+    \newcommand{\InformationTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    \newcommand{\WarningTok}[1]{\textcolor[rgb]{0.38,0.63,0.69}{\textbf{\textit{{#1}}}}}
+    
+    
+    % Define a nice break command that doesn't care if a line doesn't already
+    % exist.
+    \def\br{\hspace*{\fill} \\* }
+    % Math Jax compatability definitions
+    \def\gt{>}
+    \def\lt{<}
+    % Document parameters
+    \title{Assignment 1}
+    
+    
+    
+
+    % Pygments definitions
+    
+\makeatletter
+\def\PY@reset{\let\PY@it=\relax \let\PY@bf=\relax%
+    \let\PY@ul=\relax \let\PY@tc=\relax%
+    \let\PY@bc=\relax \let\PY@ff=\relax}
+\def\PY@tok#1{\csname PY@tok@#1\endcsname}
+\def\PY@toks#1+{\ifx\relax#1\empty\else%
+    \PY@tok{#1}\expandafter\PY@toks\fi}
+\def\PY@do#1{\PY@bc{\PY@tc{\PY@ul{%
+    \PY@it{\PY@bf{\PY@ff{#1}}}}}}}
+\def\PY#1#2{\PY@reset\PY@toks#1+\relax+\PY@do{#2}}
+
+\expandafter\def\csname PY@tok@kn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@kc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@c1\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@gr\endcsname{\def\PY@tc##1{\textcolor[rgb]{1.00,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@na\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.49,0.56,0.16}{##1}}}
+\expandafter\def\csname PY@tok@gt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.27,0.87}{##1}}}
+\expandafter\def\csname PY@tok@mf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@sr\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@nf\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@kd\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@ne\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.82,0.25,0.23}{##1}}}
+\expandafter\def\csname PY@tok@ss\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@nc\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@gh\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@nv\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@ge\endcsname{\let\PY@it=\textit}
+\expandafter\def\csname PY@tok@bp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@gi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gp\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@k\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s2\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@m\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@o\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@vi\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@mh\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gu\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.50,0.00,0.50}{##1}}}
+\expandafter\def\csname PY@tok@c\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kr\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@il\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@gd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nd\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@mb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@nt\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@nn\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.00,0.00,1.00}{##1}}}
+\expandafter\def\csname PY@tok@si\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.53}{##1}}}
+\expandafter\def\csname PY@tok@kp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@vg\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@err\endcsname{\def\PY@bc##1{\setlength{\fboxsep}{0pt}\fcolorbox[rgb]{1.00,0.00,0.00}{1,1,1}{\strut ##1}}}
+\expandafter\def\csname PY@tok@cs\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@vc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.10,0.09,0.49}{##1}}}
+\expandafter\def\csname PY@tok@cp\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.74,0.48,0.00}{##1}}}
+\expandafter\def\csname PY@tok@gs\endcsname{\let\PY@bf=\textbf}
+\expandafter\def\csname PY@tok@ni\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.60,0.60,0.60}{##1}}}
+\expandafter\def\csname PY@tok@nb\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@sc\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@se\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.73,0.40,0.13}{##1}}}
+\expandafter\def\csname PY@tok@nl\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.63,0.63,0.00}{##1}}}
+\expandafter\def\csname PY@tok@s\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@sx\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.00,0.50,0.00}{##1}}}
+\expandafter\def\csname PY@tok@mo\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.40,0.40,0.40}{##1}}}
+\expandafter\def\csname PY@tok@s1\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@w\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.73,0.73,0.73}{##1}}}
+\expandafter\def\csname PY@tok@sd\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.73,0.13,0.13}{##1}}}
+\expandafter\def\csname PY@tok@no\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.00,0.00}{##1}}}
+\expandafter\def\csname PY@tok@go\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.53,0.53,0.53}{##1}}}
+\expandafter\def\csname PY@tok@ow\endcsname{\let\PY@bf=\textbf\def\PY@tc##1{\textcolor[rgb]{0.67,0.13,1.00}{##1}}}
+\expandafter\def\csname PY@tok@cm\endcsname{\let\PY@it=\textit\def\PY@tc##1{\textcolor[rgb]{0.25,0.50,0.50}{##1}}}
+\expandafter\def\csname PY@tok@kt\endcsname{\def\PY@tc##1{\textcolor[rgb]{0.69,0.00,0.25}{##1}}}
+
+\def\PYZbs{\char`\\}
+\def\PYZus{\char`\_}
+\def\PYZob{\char`\{}
+\def\PYZcb{\char`\}}
+\def\PYZca{\char`\^}
+\def\PYZam{\char`\&}
+\def\PYZlt{\char`\<}
+\def\PYZgt{\char`\>}
+\def\PYZsh{\char`\#}
+\def\PYZpc{\char`\%}
+\def\PYZdl{\char`\$}
+\def\PYZhy{\char`\-}
+\def\PYZsq{\char`\'}
+\def\PYZdq{\char`\"}
+\def\PYZti{\char`\~}
+% for compatibility with earlier versions
+\def\PYZat{@}
+\def\PYZlb{[}
+\def\PYZrb{]}
+\makeatother
+
+
+    % Exact colors from NB
+    \definecolor{incolor}{rgb}{0.0, 0.0, 0.5}
+    \definecolor{outcolor}{rgb}{0.545, 0.0, 0.0}
+
+
+
+    
+    % Prevent overflowing lines due to hard-to-break entities
+    \sloppy 
+    % Setup hyperref package
+    \hypersetup{
+      breaklinks=true,  % so long urls are correctly broken across lines
+      colorlinks=true,
+      urlcolor=blue,
+      linkcolor=darkorange,
+      citecolor=darkgreen,
+      }
+    % Slightly bigger margins than the latex defaults
+    
+    \geometry{verbose,tmargin=1in,bmargin=1in,lmargin=1in,rmargin=1in}
+    
+    
+
+    \begin{document}
+    
+    
+    \maketitle
+    
+    
+
+    
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}35}]:} \PY{c}{\PYZsh{} Setup}
+         \PY{k+kn}{import} \PY{n+nn}{sympy} \PY{k}{as} \PY{n+nn}{sym}
+         \PY{k+kn}{import} \PY{n+nn}{numpy} \PY{k}{as} \PY{n+nn}{np}
+         \PY{k+kn}{import} \PY{n+nn}{scipy}\PY{n+nn}{.}\PY{n+nn}{optimize} \PY{k}{as} \PY{n+nn}{opt}
+         
+         \PY{n}{sym}\PY{o}{.}\PY{n}{init\PYZus{}printing}\PY{p}{(}\PY{p}{)}
+         \PY{o}{\PYZpc{}}\PY{k}{pylab} inline
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Populating the interactive namespace from numpy and matplotlib
+    \end{Verbatim}
+
+    \subsection{\texorpdfstring{Question 1 --- Measuring
+\(\pi\)}{Question 1 --- Measuring \textbackslash{}pi}}\label{question-1-measuring-pi}
+
+ In this experiment, \(\pi\) was determined experimentally by measuring
+the circumfrance and diamter of a circle. An accurate circle with four
+equispaced diameter was obtained by printing a computer generated
+graphic (see figure). The diameters and eights of the circumfrance were
+measued many times using a flexible tape-measure. Eights of a the
+circumfrance were measued between the diameter lines because aligning a
+flexible tape measure around the entire circumfrance is error-prone. For
+both circumfrance and diameter, the mean was used as the best estimate,
+and the standard deviation error on the mean was used as the
+uncertainty.
+
+Once the diameter and circumfrance were measued, pi was calculated using
+the formula \(\pi = \frac{C}{d}\) where \(C\) is the circumfrance, and
+\(d\) is the diameter.
+
+The error was propagated using the formula:
+\(\sigma_\pi=\sqrt{(\frac{\partial \pi}{\partial C} \sigma_C)^2 + (\frac{\partial \pi}{\partial d} \sigma_d)^2}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}36}]:} \PY{n}{diameters} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}
+             \PY{l+m+mf}{19.55}\PY{p}{,}
+             \PY{l+m+mf}{19.54}\PY{p}{,}
+             \PY{l+m+mf}{19.55}\PY{p}{,}
+             \PY{l+m+mf}{19.54}\PY{p}{,}
+             \PY{l+m+mf}{19.53}\PY{p}{,}
+             \PY{l+m+mf}{19.53}\PY{p}{,}
+             \PY{l+m+mf}{19.60}\PY{p}{,}
+             \PY{l+m+mf}{19.61}\PY{p}{,}
+             \PY{l+m+mf}{19.60}\PY{p}{,}
+             \PY{l+m+mf}{19.65}\PY{p}{,}
+             \PY{l+m+mf}{19.66}\PY{p}{,}
+             \PY{l+m+mf}{19.64}\PY{p}{,}
+         \PY{p}{]}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} Measured eights of a circumfrance}
+         \PY{n}{eighths} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}
+             \PY{l+m+mf}{7.70}\PY{p}{,}
+             \PY{l+m+mf}{7.72}\PY{p}{,}
+             \PY{l+m+mf}{7.76}\PY{p}{,}
+             \PY{l+m+mf}{7.65}\PY{p}{,}
+             \PY{l+m+mf}{7.63}\PY{p}{,}
+             \PY{l+m+mf}{7.71}\PY{p}{,}
+             \PY{l+m+mf}{7.72}
+         \PY{p}{]}\PY{p}{)}
+         \PY{n}{circumfrances} \PY{o}{=} \PY{l+m+mi}{8}\PY{o}{*}\PY{n}{eighths}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}37}]:} \PY{k}{def} \PY{n+nf}{mean\PYZus{}and\PYZus{}error\PYZus{}on\PYZus{}the\PYZus{}mean}\PY{p}{(}\PY{n}{datas}\PY{p}{)}\PY{p}{:}
+             \PY{n}{mean} \PY{o}{=} \PY{n}{datas}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+             \PY{n}{std} \PY{o}{=} \PY{n}{datas}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+             \PY{n}{mean\PYZus{}err} \PY{o}{=} \PY{n}{std}\PY{o}{/}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{datas}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+             \PY{k}{return} \PY{n}{mean}\PY{p}{,} \PY{n}{mean\PYZus{}err}
+         
+         \PY{n}{diameter}\PY{p}{,} \PY{n}{diameter\PYZus{}err} \PY{o}{=} \PY{n}{mean\PYZus{}and\PYZus{}error\PYZus{}on\PYZus{}the\PYZus{}mean}\PY{p}{(}\PY{n}{diameters}\PY{p}{)}
+         \PY{n}{circumfrance}\PY{p}{,} \PY{n}{circumfrance\PYZus{}err} \PY{o}{=} \PY{n}{mean\PYZus{}and\PYZus{}error\PYZus{}on\PYZus{}the\PYZus{}mean}\PY{p}{(}\PY{n}{circumfrances}\PY{p}{)}
+         
+         \PY{n}{circ}\PY{p}{,} \PY{n}{circ\PYZus{}d}\PY{p}{,} \PY{n}{diam}\PY{p}{,} \PY{n}{diam\PYZus{}d} \PY{o}{=} \PY{n}{sym}\PY{o}{.}\PY{n}{symbols}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{c sigma\PYZus{}c d sigma\PYZus{}d}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{c}{\PYZsh{} Our expressions}
+         \PY{n}{pi} \PY{o}{=} \PY{n}{circ}\PY{o}{/}\PY{n}{diam}
+         \PY{n}{pi\PYZus{}d} \PY{o}{=} \PY{n}{sym}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{sym}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{pi}\PY{p}{,} \PY{n}{circ}\PY{p}{)}\PY{o}{*}\PY{n}{circ\PYZus{}d}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{p}{(}\PY{n}{sym}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{pi}\PY{p}{,} \PY{n}{diam}\PY{p}{)}\PY{o}{*}\PY{n}{diam\PYZus{}d}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+         
+         
+         \PY{n}{subs} \PY{o}{=} \PY{p}{\PYZob{}}
+             \PY{n}{circ}\PY{p}{:} \PY{n}{circumfrance}\PY{p}{,}
+             \PY{n}{circ\PYZus{}d}\PY{p}{:} \PY{n}{circumfrance\PYZus{}err}\PY{p}{,}
+             \PY{n}{diam}\PY{p}{:} \PY{n}{diameter}\PY{p}{,}
+             \PY{n}{diam\PYZus{}d}\PY{p}{:} \PY{n}{diameter\PYZus{}err}
+         \PY{p}{\PYZcb{}}
+         
+         \PY{n}{pi\PYZus{}calc} \PY{o}{=} \PY{n}{pi}\PY{o}{.}\PY{n}{evalf}\PY{p}{(}\PY{n}{subs}\PY{o}{=}\PY{n}{subs}\PY{p}{)}
+         \PY{n}{pi\PYZus{}calc\PYZus{}d} \PY{o}{=} \PY{n}{pi\PYZus{}d}\PY{o}{.}\PY{n}{evalf}\PY{p}{(}\PY{n}{subs}\PY{o}{=}\PY{n}{subs}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Pi is measured to be: \PYZob{}: 0.3f\PYZcb{} ± \PYZob{}:0.3f\PYZcb{}}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{pi\PYZus{}calc}\PY{p}{,} \PY{n}{pi\PYZus{}calc\PYZus{}d}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Pi is measured to be:  3.145 ± 0.008
+    \end{Verbatim}
+
+    The accepted value of \(\pi\) to three decimal places is 3.142, which is
+well within the error margins.
+
+    \subsection{Question 2}\label{question-2}
+
+\emph{Propagate the uncertainty in measurement}
+
+Define the function
+\(f(x,y)=\log(\frac{x}{\sqrt{x^2+y^2}}) \sqrt{10+cos(x)}\) symbolically
+using \emph{SymPy}.
+
+There error of \(f(x,y)\), \(\sigma_f\) is given by
+\(\sigma_f=\sqrt{(\frac{\partial f}{\partial x} \sigma_x)^2 + (\frac{\partial f}{\partial y} \sigma_y)^2}\)
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}38}]:} \PY{n}{x}\PY{p}{,} \PY{n}{y}\PY{p}{,} \PY{n}{sigma\PYZus{}x}\PY{p}{,} \PY{n}{sigma\PYZus{}y} \PY{o}{=} \PY{n}{sym}\PY{o}{.}\PY{n}{symbols}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{x y sigma\PYZus{}x sigma\PYZus{}y}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{F} \PY{o}{=} \PY{n}{sym}\PY{o}{.}\PY{n}{log}\PY{p}{(}\PY{n}{x}\PY{o}{/}\PY{n}{sym}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{x}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{o}{+}\PY{n}{y}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}\PY{p}{)}\PY{o}{*}\PY{n}{sym}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{l+m+mi}{10}\PY{o}{+}\PY{n}{sym}\PY{o}{.}\PY{n}{cos}\PY{p}{(}\PY{n}{x}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{sigma\PYZus{}f} \PY{o}{=} \PY{n}{sym}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{p}{(}\PY{n}{sym}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{F}\PY{p}{,} \PY{n}{x}\PY{p}{)}\PY{o}{*}\PY{n}{sigma\PYZus{}x} \PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2} \PY{o}{+}
+                            \PY{p}{(}\PY{n}{sym}\PY{o}{.}\PY{n}{diff}\PY{p}{(}\PY{n}{F}\PY{p}{,}\PY{n}{y}\PY{p}{)}\PY{o}{*}\PY{n}{sigma\PYZus{}y}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+\end{Verbatim}
+
+    Now we can evaluate our function and calculate its error on the range of
+values below:
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}39}]:} \PY{n}{values} \PY{o}{=} \PY{p}{[}
+             \PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{x}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{sigma\PYZus{}x}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.2}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{y}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{2.3}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{sigma\PYZus{}y}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.1}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{x}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{1.2}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{sigma\PYZus{}x}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.1}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{y}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{3.0}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{sigma\PYZus{}y}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{o}{.}\PY{l+m+mi}{2}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{x}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{2.1}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{sigma\PYZus{}x}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.7}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{y}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{1.0}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{sigma\PYZus{}y}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{o}{.}\PY{l+m+mi}{7}\PY{p}{\PYZcb{}}\PY{p}{,}
+             \PY{p}{\PYZob{}}\PY{l+s}{\PYZsq{}}\PY{l+s}{x}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{3.2}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{sigma\PYZus{}x}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.4}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{y}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{4.1}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{sigma\PYZus{}y}\PY{l+s}{\PYZsq{}}\PY{p}{:}\PY{l+m+mf}{0.6}\PY{p}{\PYZcb{}}\PY{p}{,}
+         \PY{p}{]}
+         
+         \PY{c}{\PYZsh{} calculate the values and errors on f}
+         \PY{k}{for} \PY{n}{subs} \PY{o+ow}{in} \PY{n}{values}\PY{p}{:}
+             \PY{n}{val} \PY{o}{=} \PY{n}{F}\PY{o}{.}\PY{n}{evalf}\PY{p}{(}\PY{n}{subs}\PY{o}{=}\PY{n}{subs}\PY{p}{)}
+             \PY{n}{err} \PY{o}{=} \PY{n}{sigma\PYZus{}f}\PY{o}{.}\PY{n}{evalf}\PY{p}{(}\PY{n}{subs}\PY{o}{=}\PY{n}{subs}\PY{p}{)}
+             \PY{n+nb}{print}\PY{p}{(} 
+                \PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{f(\PYZob{}x:.1f\PYZcb{}±\PYZob{}sigma\PYZus{}x:.1f\PYZcb{}, \PYZob{}y:.1f\PYZcb{}±\PYZob{}sigma\PYZus{}y:.1f\PYZcb{}) = }\PY{l+s}{\PYZsq{}}\PY{o}{+}
+                 \PY{l+s}{\PYZsq{}}\PY{l+s}{\PYZob{}val: 0.1f\PYZcb{} ± \PYZob{}err:0.1f\PYZcb{}}\PY{l+s}{\PYZsq{}}\PY{p}{)}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{val}\PY{o}{=}\PY{n}{val}\PY{p}{,} \PY{n}{err}\PY{o}{=}\PY{n}{err}\PY{p}{,} \PY{o}{*}\PY{o}{*}\PY{n}{subs}\PY{p}{)}
+             \PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+f(1.0±0.2, 2.3±0.1) = -3.0 ± 0.6
+f(1.2±0.1, 3.0±0.2) = -3.2 ± 0.3
+f(2.1±0.7, 1.0±0.7) = -0.3 ± 0.4
+f(3.2±0.4, 4.1±0.6) = -1.5 ± 0.4
+    \end{Verbatim}
+
+    \subsection{Question 3}\label{question-3}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}40}]:} \PY{c}{\PYZsh{} near linear model y(x)=a+bx}
+         \PY{c}{\PYZsh{} }
+         
+         \PY{n}{data} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{array}\PY{p}{(}\PY{p}{[}
+             \PY{c}{\PYZsh{}  x,      y,  sigma\PYZus{}y}
+             \PY{p}{[} \PY{l+m+mf}{0.00}\PY{p}{,}  \PY{l+m+mf}{4.92}\PY{p}{,} \PY{l+m+mf}{0.86}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{0.53}\PY{p}{,}  \PY{l+m+mf}{5.45}\PY{p}{,} \PY{l+m+mf}{1.19}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{1.05}\PY{p}{,}  \PY{l+m+mf}{5.89}\PY{p}{,} \PY{l+m+mf}{1.29}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{1.58}\PY{p}{,}  \PY{l+m+mf}{8.12}\PY{p}{,} \PY{l+m+mf}{0.12}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{2.11}\PY{p}{,}  \PY{l+m+mf}{9.20}\PY{p}{,} \PY{l+m+mf}{0.61}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{2.63}\PY{p}{,} \PY{l+m+mf}{10.86}\PY{p}{,} \PY{l+m+mf}{0.62}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{3.16}\PY{p}{,} \PY{l+m+mf}{10.33}\PY{p}{,} \PY{l+m+mf}{1.26}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{3.68}\PY{p}{,} \PY{l+m+mf}{15.28}\PY{p}{,} \PY{l+m+mf}{1.42}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{4.21}\PY{p}{,} \PY{l+m+mf}{13.80}\PY{p}{,} \PY{l+m+mf}{1.07}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{4.74}\PY{p}{,} \PY{l+m+mf}{13.86}\PY{p}{,} \PY{l+m+mf}{0.44}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{5.26}\PY{p}{,} \PY{l+m+mf}{14.57}\PY{p}{,} \PY{l+m+mf}{0.72}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{5.79}\PY{p}{,} \PY{l+m+mf}{15.48}\PY{p}{,} \PY{l+m+mf}{0.65}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{6.32}\PY{p}{,} \PY{l+m+mf}{17.91}\PY{p}{,} \PY{l+m+mf}{0.72}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{6.84}\PY{p}{,} \PY{l+m+mf}{17.83}\PY{p}{,} \PY{l+m+mf}{0.65}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{7.37}\PY{p}{,} \PY{l+m+mf}{21.25}\PY{p}{,} \PY{l+m+mf}{1.64}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{7.89}\PY{p}{,} \PY{l+m+mf}{21.72}\PY{p}{,} \PY{l+m+mf}{0.59}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{8.42}\PY{p}{,} \PY{l+m+mf}{21.80}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{8.95}\PY{p}{,} \PY{l+m+mf}{23.52}\PY{p}{,} \PY{l+m+mf}{1.45}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[} \PY{l+m+mf}{9.47}\PY{p}{,} \PY{l+m+mf}{25.47}\PY{p}{,} \PY{l+m+mf}{1.25}\PY{p}{]}\PY{p}{,}
+             \PY{p}{[}\PY{l+m+mf}{10.00}\PY{p}{,} \PY{l+m+mf}{24.95}\PY{p}{,} \PY{l+m+mf}{0.05}\PY{p}{]}\PY{p}{,}
+         \PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{X} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{]}
+         \PY{n}{Y} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{1}\PY{p}{]}
+         \PY{n}{Y\PYZus{}err} \PY{o}{=} \PY{n}{data}\PY{p}{[}\PY{p}{:}\PY{p}{,}\PY{l+m+mi}{2}\PY{p}{]}
+\end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\tightlist
+\item
+  Evaluate the mean, standard deviation, and error on the mean of Y
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}41}]:} \PY{n}{Y\PYZus{}mean}  \PY{o}{=} \PY{n}{Y}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}
+         \PY{n}{Y\PYZus{}stdev} \PY{o}{=} \PY{n}{Y}\PY{o}{.}\PY{n}{std}\PY{p}{(}\PY{n}{ddof}\PY{o}{=}\PY{l+m+mi}{1}\PY{p}{)}
+         \PY{n}{Y\PYZus{}mean\PYZus{}err} \PY{o}{=} \PY{n}{Y\PYZus{}stdev}\PY{o}{/}\PY{n}{sqrt}\PY{p}{(}\PY{n+nb}{len}\PY{p}{(}\PY{n}{Y}\PY{p}{)}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}\PY{p}{)}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Y\PYZus{}mean  = \PYZob{}:.2f\PYZcb{} ± \PYZob{}:.1f\PYZcb{}}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{Y\PYZus{}mean}\PY{p}{,} \PY{n}{Y\PYZus{}mean\PYZus{}err}\PY{p}{)}\PY{p}{)}
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Y\PYZus{}stdev = \PYZob{}:.2f\PYZcb{}}\PY{l+s}{\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{Y\PYZus{}stdev}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+Y\_mean  = 15.11 ± 1.5
+Y\_stdev = 6.60
+    \end{Verbatim}
+
+    \begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Fit the model
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}42}]:} \PY{k}{def} \PY{n+nf}{model}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{:}
+             \PY{k}{return} \PY{n}{a}\PY{o}{+}\PY{n}{b}\PY{o}{*}\PY{n}{x}
+         
+         \PY{p}{(}\PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{,} \PY{n}{pcov} \PY{o}{=} \PY{n}{opt}\PY{o}{.}\PY{n}{curve\PYZus{}fit}\PY{p}{(}\PY{n}{model}\PY{p}{,} \PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,}\PY{l+m+mi}{0}\PY{p}{)}\PY{p}{,} \PY{n}{sigma}\PY{o}{=}\PY{n}{Y\PYZus{}mean\PYZus{}err}\PY{p}{)}
+         \PY{n}{pars\PYZus{}err} \PY{o}{=} \PY{n}{np}\PY{o}{.}\PY{n}{sqrt}\PY{p}{(}\PY{n}{np}\PY{o}{.}\PY{n}{diag}\PY{p}{(}\PY{n}{pcov}\PY{p}{)}\PY{p}{)}
+         
+         \PY{n}{matplotlib}\PY{o}{.}\PY{n}{rcParams}\PY{p}{[}\PY{l+s}{\PYZsq{}}\PY{l+s}{figure.figsize}\PY{l+s}{\PYZsq{}}\PY{p}{]} \PY{o}{=} \PY{p}{(}\PY{l+m+mi}{12}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{)}
+         \PY{n}{gs} \PY{o}{=} \PY{n}{matplotlib}\PY{o}{.}\PY{n}{gridspec}\PY{o}{.}\PY{n}{GridSpec}\PY{p}{(}\PY{l+m+mi}{2}\PY{p}{,} \PY{l+m+mi}{1}\PY{p}{,} \PY{n}{height\PYZus{}ratios}\PY{o}{=}\PY{p}{[}\PY{l+m+mi}{3}\PY{p}{,} \PY{l+m+mi}{2}\PY{p}{]}\PY{p}{)}
+         
+         \PY{n}{subplot}\PY{p}{(}\PY{n}{gs}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{)}
+         \PY{n}{errorbar}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{p}{,} \PY{n}{Y\PYZus{}err}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k.}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{Data}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{x} \PY{o}{=} \PY{n}{linspace}\PY{p}{(}\PY{l+m+mi}{0}\PY{p}{,} \PY{l+m+mi}{10}\PY{p}{,} \PY{l+m+mi}{200}\PY{p}{)}
+         \PY{n}{plot}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{model}\PY{p}{(}\PY{n}{x}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{,} \PY{l+s}{\PYZsq{}}\PY{l+s}{r\PYZhy{}}\PY{l+s}{\PYZsq{}}\PY{p}{,} \PY{n}{label}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{Linear Fit}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{c}{\PYZsh{}Create some text with the fit results to put into our plot}
+         \PY{n}{resultTxt} \PY{o}{=} \PY{p}{(}
+             \PY{l+s}{\PYZdq{}}\PY{l+s}{Fitted parameters for y=a+bx:}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}
+             \PY{l+s}{\PYZdq{}}\PY{l+s}{a: \PYZob{}:.2f\PYZcb{} +/− \PYZob{}:.2f\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}
+             \PY{l+s}{\PYZdq{}}\PY{l+s}{b: \PYZob{}:.2f\PYZcb{} +/− \PYZob{}:.2f\PYZcb{}}\PY{l+s+se}{\PYZbs{}n}\PY{l+s}{\PYZdq{}}
+         \PY{p}{)}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{a}\PY{p}{,}\PY{n}{pars\PYZus{}err}\PY{p}{[}\PY{l+m+mi}{0}\PY{p}{]}\PY{p}{,}\PY{n}{b}\PY{p}{,}\PY{n}{pars\PYZus{}err}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{text}\PY{p}{(}\PY{n}{X}\PY{o}{.}\PY{n}{mean}\PY{p}{(}\PY{p}{)}\PY{p}{,}\PY{n}{Y}\PY{o}{.}\PY{n}{min}\PY{p}{(}\PY{p}{)} \PY{p}{,}\PY{n}{resultTxt} \PY{p}{,} \PY{n}{fontsize}\PY{o}{=}\PY{l+m+mi}{14}\PY{p}{)}
+         \PY{n}{title}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Fit of the data}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Y}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{X}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{legend}\PY{p}{(}\PY{n}{loc}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{best}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         
+         \PY{n}{subplot}\PY{p}{(}\PY{n}{gs}\PY{p}{[}\PY{l+m+mi}{1}\PY{p}{]}\PY{p}{)}
+         \PY{n}{errorbar}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{Y}\PY{o}{\PYZhy{}}\PY{n}{model}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{,} \PY{n}{Y\PYZus{}err}\PY{p}{,} \PY{n}{fmt}\PY{o}{=}\PY{l+s}{\PYZsq{}}\PY{l+s}{k.}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{xlabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{X}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{ylabel}\PY{p}{(}\PY{l+s}{\PYZsq{}}\PY{l+s}{Residuals}\PY{l+s}{\PYZsq{}}\PY{p}{)}
+         \PY{n}{show}\PY{p}{(}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{center}
+    \adjustimage{max size={0.9\linewidth}{0.9\paperheight}}{Assignment 1_files/Assignment 1_14_0.png}
+    \end{center}
+    { \hspace*{\fill} \\}
+    
+    \begin{enumerate}
+\def\labelenumi{\Alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Calculate the \(\chi^2\) of this fit
+\end{enumerate}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+{\color{incolor}In [{\color{incolor}43}]:} \PY{n}{chi\PYZus{}squared} \PY{o}{=} \PY{n+nb}{sum}\PY{p}{(}\PY{p}{(}\PY{p}{(}\PY{n}{Y}\PY{o}{\PYZhy{}}\PY{n}{model}\PY{p}{(}\PY{n}{X}\PY{p}{,} \PY{n}{a}\PY{p}{,} \PY{n}{b}\PY{p}{)}\PY{p}{)}\PY{o}{/}\PY{n}{Y\PYZus{}err}\PY{p}{)}\PY{o}{*}\PY{o}{*}\PY{l+m+mi}{2}\PY{p}{)}
+         \PY{n}{M} \PY{o}{=} \PY{l+m+mi}{2} \PY{c}{\PYZsh{} 2 parameters}
+         \PY{n}{N} \PY{o}{=} \PY{n+nb}{len}\PY{p}{(}\PY{n}{Y}\PY{p}{)}
+         \PY{n}{n} \PY{o}{=} \PY{n}{N}\PY{o}{\PYZhy{}}\PY{n}{M}\PY{o}{\PYZhy{}}\PY{l+m+mi}{1}
+         
+         \PY{n+nb}{print}\PY{p}{(}\PY{l+s}{\PYZsq{}\PYZsq{}\PYZsq{}}
+         \PY{l+s}{The chi squared for this fit is \PYZob{}:.2f\PYZcb{}}
+         \PY{l+s}{The number of degrees of freedum is \PYZob{}\PYZcb{}}
+         \PY{l+s}{The chi squared over dof is \PYZob{}:.2f\PYZcb{}}
+         \PY{l+s}{\PYZsq{}\PYZsq{}\PYZsq{}}\PY{o}{.}\PY{n}{format}\PY{p}{(}\PY{n}{chi\PYZus{}squared}\PY{p}{,} \PY{n}{n}\PY{p}{,} \PY{n}{chi\PYZus{}squared}\PY{o}{/}\PY{n}{n}\PY{p}{)}\PY{p}{)}
+\end{Verbatim}
+
+    \begin{Verbatim}[commandchars=\\\{\}]
+The chi squared for this fit is 272.51
+The number of degrees of freedum is 17
+The chi squared over dof is 16.03
+    \end{Verbatim}
+
+
+    % Add a bibliography block to the postdoc
+    
+    
+    
+    \end{document}
